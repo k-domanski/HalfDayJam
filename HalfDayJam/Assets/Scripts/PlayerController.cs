@@ -29,7 +29,7 @@ public class PlayerController : MonoBehaviour, HalfDayJam.IPlayerActions
     {
         if (context.performed)
         {
-
+            GetComponent<PlayerScript>().ClickMine();
         }
     }
 }

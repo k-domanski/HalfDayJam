@@ -23,13 +23,7 @@ public class PlayerScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.F))
-        {
-            if(mineRes != null)
-            {
-                mineRes.GetComponent<MineScript>().MineRes();
-            }
-        }
+       
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -56,5 +50,13 @@ public class PlayerScript : MonoBehaviour
             inRangeBeat = false;
         }
         mineRes = null;
+    }
+
+    public void ClickMine()
+    {
+        if (mineRes != null)
+        {
+            mineRes.GetComponent<MineScript>().MineRes();
+        }
     }
 }

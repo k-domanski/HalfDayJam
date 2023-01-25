@@ -17,6 +17,7 @@ public class VibrationController : MonoBehaviour
     {
         if (other.GetComponent<PlayerInput>() != null)
         {
+            other.GetComponent<AudioSource>().Play();
             input = other.GetComponent<PlayerInput>();
             Vibrate();
         }

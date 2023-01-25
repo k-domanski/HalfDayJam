@@ -66,6 +66,6 @@ public class MineScript : MonoBehaviour
         }
         PlayerObject.GetComponent<PlayerScript>().mineRes = null;
         FinishedMining.Play();
-        Destroy(gameObject, 2);
+        Destroy(gameObject, 1);
     }
 }
