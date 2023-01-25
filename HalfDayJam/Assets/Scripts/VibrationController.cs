@@ -18,17 +18,15 @@ public class VibrationController : MonoBehaviour
         if (other.GetComponent<PlayerInput>() != null)
         {
             input = other.GetComponent<PlayerInput>();
-            gamepad = GetGamePad();
-            coroutine = StartVibration();
-            StartCoroutine(coroutine);
+            Vibrate();
         }
     }
 
     public void Vibrate()
     {
-        //gamepad = GetGamePad();
-        //coroutine = StartVibration();
-        //StartCoroutine(coroutine);
+        gamepad = GetGamePad();
+        coroutine = StartVibration();
+        StartCoroutine(coroutine);
     }
 
     IEnumerator StartVibration()
