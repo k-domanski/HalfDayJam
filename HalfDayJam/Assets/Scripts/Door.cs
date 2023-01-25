@@ -34,7 +34,6 @@ public class Door : MonoBehaviour
         if (other.GetComponent<PlayerController>())
         {
             Debug.Log("Exit");
-            onEnter.Stop();
             if (other.GetComponent<PlayerController>().transform.position.y > transform.position.y)
             {
                collider.SetActive(true);

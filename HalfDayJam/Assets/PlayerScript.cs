@@ -8,7 +8,11 @@ public class PlayerScript : MonoBehaviour
     public int BeatCount = 0;
     public AudioSource HitSound;
     public AudioSource Wall;
+    public AudioSource YaySound;
+    public AudioSource LoseSound;
     public GameObject boss;
+    public bool win = false;
+    public bool lose = false;
 
     private bool inRangeRtx = false;
     private bool inRangeBeat = false;
@@ -27,7 +31,11 @@ public class PlayerScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-       
+        if (win)
+        {
+            YaySound.Play();
+            win = false;
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -44,6 +52,13 @@ public class PlayerScript : MonoBehaviour
             }
             mineRes = collision.gameObject;
         }
+
+        if (collision.tag == "Boss")
+        {
+            bossF = true;
+            Debug.Log("PlayerFBoss");
+            HP += BeatCount;
+        }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
@@ -54,12 +69,6 @@ public class PlayerScript : MonoBehaviour
             inRangeBeat = false;
         }
         mineRes = null;
-
-        if(collision.tag == "Boss")
-        {
-            bossF = true;
-            HP += BeatCount;
-        }
     }
 
     public void ClickMine()
@@ -79,9 +88,13 @@ public class PlayerScript : MonoBehaviour
     {
         HP--;
         HitSound.Play();
-        if(HP <= 0)
+
+        Debug.Log("PlayerHit");
+        if (HP <= 0)
         {
-            //Lose
+            lose = true;
+            LoseSound.Play();
+            Destroy(gameObject, 15);
         }
     }
 

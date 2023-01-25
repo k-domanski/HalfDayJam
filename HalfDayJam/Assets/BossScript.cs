@@ -22,7 +22,7 @@ public class BossScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(fight)
+        if (fight && !PlayerObject.GetComponent<PlayerScript>().lose)
         {
             attackTime += Time.deltaTime;
             if (attackTime >= 5.0f)
@@ -38,6 +38,7 @@ public class BossScript : MonoBehaviour
         if(collision == PlayerObject.GetComponent<BoxCollider2D>())
         {
             fight = true;
+            Debug.Log("BossFPlayer");
         }
     }
 
@@ -45,9 +46,11 @@ public class BossScript : MonoBehaviour
     {
         HitPoints--;
         ReceiveDmg.Play();
+        Debug.Log("BossHit");
         if(HitPoints <= 0)
         {
             Die.Play();
+            PlayerObject.GetComponent<PlayerScript>().win = true;
             Destroy(gameObject, 1);
         }
     }
