@@ -19,6 +19,7 @@ public class PlayerScript : MonoBehaviour
 
     private int HP = 10;
     private bool bossF = false;
+    private float attackTime = 0.0f;
 
     public GameObject mineRes = null;
 
@@ -31,10 +32,16 @@ public class PlayerScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
         if (win)
         {
             YaySound.Play();
             win = false;
+        }
+
+        if (bossF)
+        {
+            attackTime += Time.deltaTime;
         }
     }
 
@@ -78,9 +85,10 @@ public class PlayerScript : MonoBehaviour
             mineRes.GetComponent<MineScript>().MineRes();
         }
 
-        if (bossF)
+        if (bossF && attackTime >= 1.0f)
         {
             boss.GetComponent<BossScript>().LoseHP();
+            attackTime = 0.0f;
         }
     }
 
