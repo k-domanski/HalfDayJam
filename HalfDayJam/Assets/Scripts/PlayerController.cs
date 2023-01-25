@@ -7,7 +7,7 @@ using UnityEngine.InputSystem;
 public class PlayerController : MonoBehaviour, HalfDayJam.IPlayerActions
 {
     private Vector2 _moveOffset;
-    private float _speed = 10;
+    [SerializeField] private float _speed = 10;
 
     // Update is called once per frame
     void Update()
