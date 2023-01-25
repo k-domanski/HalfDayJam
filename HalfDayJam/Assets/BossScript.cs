@@ -27,7 +27,7 @@ public class BossScript : MonoBehaviour
             attackTime += Time.deltaTime;
             if (attackTime >= 5.0f)
             {
-                PlayerObject.GetComponent<PlayerScript>().DealDamage(1);
+                PlayerObject.GetComponent<PlayerScript>().GetHit();
                 attackTime = 0.0f;
             }
         }
