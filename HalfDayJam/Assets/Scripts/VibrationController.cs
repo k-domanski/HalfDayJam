@@ -46,7 +46,7 @@ public class VibrationController : MonoBehaviour
             yield return null;
         }
     }
-    private Gamepad GetGamePad()
+    public Gamepad GetGamePad()
     {
         return Gamepad.all.FirstOrDefault(g => input.devices.Any(d => d.deviceId == g.deviceId));
     }

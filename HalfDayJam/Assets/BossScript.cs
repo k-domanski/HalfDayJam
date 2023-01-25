@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class BossScript : MonoBehaviour
 {
@@ -38,6 +39,8 @@ public class BossScript : MonoBehaviour
         if(collision == PlayerObject.GetComponent<BoxCollider2D>())
         {
             fight = true;
+            var pad = collision.GetComponent<VibrationController>().GetGamePad();
+            pad.SetMotorSpeeds(0.123f, 0.234f);
         }
     }
 
