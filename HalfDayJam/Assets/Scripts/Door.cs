@@ -5,6 +5,7 @@ using UnityEngine;
 public class Door : MonoBehaviour
 {
     [SerializeField] private AudioSource onEnter;
+    [SerializeField] private AudioSource Trail;
 
     [SerializeField] private GameObject collider;
     // Start is called before the first frame update

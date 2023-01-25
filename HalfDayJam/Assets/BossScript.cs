@@ -23,7 +23,7 @@ public class BossScript : MonoBehaviour
     {
         if(fight)
         {
-
+            PlayerObject.GetComponent<PlayerScript>().GetHit();
         }
     }
 
@@ -32,6 +32,7 @@ public class BossScript : MonoBehaviour
         if(collision == PlayerObject.GetComponent<BoxCollider2D>())
         {
             fight = true;
+            HitPoints = HitPoints - PlayerObject.GetComponent<PlayerScript>().RtxCount;
         }
     }
 
