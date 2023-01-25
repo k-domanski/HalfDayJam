@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using System.Linq;
 
 public class BossScript : MonoBehaviour
 {
@@ -26,6 +27,8 @@ public class BossScript : MonoBehaviour
     {
         if (fight && !PlayerObject.GetComponent<PlayerScript>().lose)
         {
+            var gamepad = Gamepad.all.FirstOrDefault(g => input.devices.Any(d => d.deviceId == g.deviceId));
+            gamepad.SetMotorSpeeds(0.123f, 0.234f);
             attackTime += Time.deltaTime;
             if (attackTime >= 5.0f)
             {
@@ -39,11 +42,10 @@ public class BossScript : MonoBehaviour
     {
         if(collision == PlayerObject.GetComponent<BoxCollider2D>())
         {
+            input = collision.GetComponent<PlayerInput>();
             fight = true;
             Debug.Log("BossFPlayer");
-            input = collision.GetComponent<PlayerInput>();
-            var gamepad = Gamepad.all.FirstOrDefault(g => input.devices.Any(d => d.deviceId == g.deviceId));
-            gamepad.SetMotorSpeeds(0.123f, 0.234f);
+            
         }
     }
 
