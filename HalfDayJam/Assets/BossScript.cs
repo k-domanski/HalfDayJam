@@ -11,6 +11,7 @@ public class BossScript : MonoBehaviour
     public int HitPoints = 15;
 
     private bool fight = false;
+    private float attackTime = 0.0f;
 
     // Start is called before the first frame update
     void Start()
@@ -23,7 +24,12 @@ public class BossScript : MonoBehaviour
     {
         if(fight)
         {
-
+            attackTime += Time.deltaTime;
+            if (attackTime >= 5.0f)
+            {
+                PlayerObject.GetComponent<PlayerScript>().DealDamage(1);
+                attackTime = 0.0f;
+            }
         }
     }
 

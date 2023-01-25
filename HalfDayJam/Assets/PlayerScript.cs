@@ -59,4 +59,9 @@ public class PlayerScript : MonoBehaviour
             mineRes.GetComponent<MineScript>().MineRes();
         }
     }
+
+    public void DealDamage(int amount)
+    {
+        HP -= amount;
+    }
 }
