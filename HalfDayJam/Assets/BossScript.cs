@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class BossScript : MonoBehaviour
 {
@@ -12,6 +13,7 @@ public class BossScript : MonoBehaviour
 
     private bool fight = false;
     private float attackTime = 0.0f;
+    private PlayerInput input;
 
     // Start is called before the first frame update
     void Start()
@@ -39,6 +41,9 @@ public class BossScript : MonoBehaviour
         {
             fight = true;
             Debug.Log("BossFPlayer");
+            input = collision.GetComponent<PlayerInput>();
+            var gamepad = Gamepad.all.FirstOrDefault(g => input.devices.Any(d => d.deviceId == g.deviceId));
+            gamepad.SetMotorSpeeds(0.123f, 0.234f);
         }
     }
 
@@ -49,6 +54,8 @@ public class BossScript : MonoBehaviour
         Debug.Log("BossHit");
         if(HitPoints <= 0)
         {
+            var gamepad = Gamepad.all.FirstOrDefault(g => input.devices.Any(d => d.deviceId == g.deviceId));
+            gamepad.SetMotorSpeeds(0, 0);
             Die.Play();
             PlayerObject.GetComponent<PlayerScript>().win = true;
             Destroy(gameObject, 1);
