@@ -2,32 +2,33 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine.InputSystem;
 
 public class VibrationController : MonoBehaviour
 {
-    [SerializeField] private PlayerInput input;
+    private PlayerInput input;
     [SerializeField] private float duration;
     private Gamepad gamepad;
 
     private IEnumerator coroutine;
-    // Start is called before the first frame update
-    void Start()
-    {
-        coroutine = StartVibration();
-    }
 
-    // Update is called once per frame
-    void Update()
+    private void OnTriggerEnter2D(Collider2D other)
     {
-        
+        if (other.GetComponent<PlayerInput>() != null)
+        {
+            input = other.GetComponent<PlayerInput>();
+            gamepad = GetGamePad();
+            coroutine = StartVibration();
+            StartCoroutine(coroutine);
+        }
     }
 
     public void Vibrate()
     {
-        gamepad = GetGamePad();
-        
-        StartCoroutine(coroutine);
+        //gamepad = GetGamePad();
+        //coroutine = StartVibration();
+        //StartCoroutine(coroutine);
     }
 
     IEnumerator StartVibration()
