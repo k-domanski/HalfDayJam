@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - MineMaterial
+  - Boss
   layers:
   - Default
   - TransparentFX
